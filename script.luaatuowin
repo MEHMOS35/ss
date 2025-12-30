@@ -1,426 +1,120 @@
-local v0=game:GetService("Players")
-local v1=game:GetService("RunService")
-local v2=game:GetService("TweenService")
-local v3=game:GetService("UserInputService")
-local v4=v0.LocalPlayer
+
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+repeat task.wait() until LocalPlayer.Character
 repeat task.wait() until workspace.CurrentCamera
- 
- 
-local v5=CFrame.new(4886.9292, 517.608459, 1627.51245, -1, 7.32781444e-08, -1.55445754e-08, 7.32781444e-08, 1, 5.37278098e-08, 1.55445807e-08, 5.37278098e-08, -1)
- 
-local v8=false
-local v10
-local v12=false
- 
- 
-local v13=Instance.new("ScreenGui")
-v13.Name="MehmosGui"
-v13.ResetOnSpawn=false
-v13.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
-v13.Parent=v4:WaitForChild("PlayerGui")
- 
- 
-local v17=Instance.new("Frame")
-v17.Size=UDim2.new(0,350,0,220)
-v17.Position=UDim2.new(0.5,-175,0.5,-110)
-v17.BackgroundColor3=Color3.fromRGB(18,18,24)
-v17.BorderSizePixel=0
-v17.Active=true
-v17.Draggable=true
-v17.Parent=v13
- 
- 
-local shadow=Instance.new("ImageLabel")
-shadow.Name="Shadow"
-shadow.AnchorPoint=Vector2.new(0.5,0.5)
-shadow.BackgroundTransparency=1
-shadow.Position=UDim2.new(0.5,0,0.5,0)
-shadow.Size=UDim2.new(1,30,1,30)
-shadow.ZIndex=0
-shadow.Image="rbxasset://textures/ui/GuiImagePlaceholder.png"
-shadow.ImageColor3=Color3.fromRGB(0,0,0)
-shadow.ImageTransparency=0.5
-shadow.ScaleType=Enum.ScaleType.Slice
-shadow.SliceCenter=Rect.new(10,10,10,10)
-shadow.Parent=v17
- 
-Instance.new("UICorner",v17).CornerRadius=UDim.new(0,16)
- 
- 
-local headerBar=Instance.new("Frame")
-headerBar.Size=UDim2.new(1,0,0,60)
-headerBar.Position=UDim2.new(0,0,0,0)
-headerBar.BackgroundColor3=Color3.fromRGB(25,25,32)
-headerBar.BorderSizePixel=0
-headerBar.Parent=v17
- 
-Instance.new("UICorner",headerBar).CornerRadius=UDim.new(0,16)
- 
-local headerGradient=Instance.new("UIGradient")
-headerGradient.Color=ColorSequence.new{
-    ColorSequenceKeypoint.new(0,Color3.fromRGB(35,35,45)),
-    ColorSequenceKeypoint.new(1,Color3.fromRGB(25,25,32))
-}
-headerGradient.Rotation=90
-headerGradient.Parent=headerBar
- 
- 
-local bottomCover=Instance.new("Frame")
-bottomCover.Size=UDim2.new(1,0,0,16)
-bottomCover.Position=UDim2.new(0,0,1,-16)
-bottomCover.BackgroundColor3=Color3.fromRGB(25,25,32)
-bottomCover.BorderSizePixel=0
-bottomCover.Parent=headerBar
- 
- 
-local logoFrame=Instance.new("Frame")
-logoFrame.Size=UDim2.new(0,40,0,40)
-logoFrame.Position=UDim2.new(0,15,0,10)
-logoFrame.BackgroundColor3=Color3.fromRGB(88,101,242)
-logoFrame.BorderSizePixel=0
-logoFrame.Parent=headerBar
- 
-Instance.new("UICorner",logoFrame).CornerRadius=UDim.new(0,10)
- 
-local logoGradient=Instance.new("UIGradient")
-logoGradient.Color=ColorSequence.new{
-    ColorSequenceKeypoint.new(0,Color3.fromRGB(88,101,242)),
-    ColorSequenceKeypoint.new(1,Color3.fromRGB(114,137,218))
-}
-logoGradient.Rotation=45
-logoGradient.Parent=logoFrame
- 
-local logoText=Instance.new("TextLabel")
-logoText.Size=UDim2.new(1,0,1,0)
-logoText.BackgroundTransparency=1
-logoText.Text="M"
-logoText.Font=Enum.Font.GothamBold
-logoText.TextSize=24
-logoText.TextColor3=Color3.new(1,1,1)
-logoText.Parent=logoFrame
- 
- 
-local v26=Instance.new("TextLabel")
-v26.Size=UDim2.new(1,-140,0,25)
-v26.Position=UDim2.new(0,65,0,10)
-v26.BackgroundTransparency=1
-v26.Text="MEHMOS"
-v26.Font=Enum.Font.GothamBold
-v26.TextSize=22
-v26.TextColor3=Color3.new(1,1,1)
-v26.TextXAlignment=Enum.TextXAlignment.Left
-v26.Parent=headerBar
- 
- 
-local subtitle=Instance.new("TextLabel")
-subtitle.Size=UDim2.new(1,-140,0,18)
-subtitle.Position=UDim2.new(0,65,0,32)
-subtitle.BackgroundTransparency=1
-subtitle.Text="Auto Win System"
-subtitle.Font=Enum.Font.Gotham
-subtitle.TextSize=12
-subtitle.TextColor3=Color3.fromRGB(150,150,160)
-subtitle.TextXAlignment=Enum.TextXAlignment.Left
-subtitle.Parent=headerBar
- 
- 
-local v38=Instance.new("TextButton")
-v38.Size=UDim2.new(0,35,0,35)
-v38.Position=UDim2.new(1,-45,0,12.5)
-v38.BackgroundColor3=Color3.fromRGB(35,35,45)
-v38.Text="−"
-v38.Font=Enum.Font.GothamBold
-v38.TextSize=18
-v38.TextColor3=Color3.fromRGB(200,200,210)
-v38.AutoButtonColor=false
-v38.Parent=headerBar
- 
-Instance.new("UICorner",v38).CornerRadius=UDim.new(0,8)
- 
- 
-local statusDot=Instance.new("Frame")
-statusDot.Size=UDim2.new(0,8,0,8)
-statusDot.Position=UDim2.new(1,-18,0,15)
-statusDot.BackgroundColor3=Color3.fromRGB(67,181,129)
-statusDot.BorderSizePixel=0
-statusDot.Parent=headerBar
- 
-Instance.new("UICorner",statusDot).CornerRadius=UDim.new(1,0)
- 
- 
-local function v60(v75,isSuccess)
-    local notifColor=isSuccess and Color3.fromRGB(67,181,129) or Color3.fromRGB(240,71,71)
-    
-    local v77=Instance.new("Frame")
-    v77.Size=UDim2.new(0,0,0,0)
-    v77.Position=UDim2.new(0.5,-150,0,-80)
-    v77.BackgroundColor3=Color3.fromRGB(25,25,32)
-    v77.BorderSizePixel=0
-    v77.Parent=v13
-    v77.ZIndex=100
-    
-    Instance.new("UICorner",v77).CornerRadius=UDim.new(0,12)
-    
-    local accentBar=Instance.new("Frame")
-    accentBar.Size=UDim2.new(0,4,1,0)
-    accentBar.Position=UDim2.new(0,0,0,0)
-    accentBar.BackgroundColor3=notifColor
-    accentBar.BorderSizePixel=0
-    accentBar.Parent=v77
-    
-    local accentCorner=Instance.new("UICorner")
-    accentCorner.CornerRadius=UDim.new(0,12)
-    accentCorner.Parent=accentBar
-    
-    local textLabel=Instance.new("TextLabel")
-    textLabel.Size=UDim2.new(1,-20,1,0)
-    textLabel.Position=UDim2.new(0,15,0,0)
-    textLabel.BackgroundTransparency=1
-    textLabel.Text=v75
-    textLabel.Font=Enum.Font.GothamSemibold
-    textLabel.TextSize=14
-    textLabel.TextColor3=Color3.new(1,1,1)
-    textLabel.TextXAlignment=Enum.TextXAlignment.Left
-    textLabel.TextTransparency=1
-    textLabel.Parent=v77
-    
-    v2:Create(v77,TweenInfo.new(0.4,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{
-        Size=UDim2.new(0,300,0,50),
-        Position=UDim2.new(0.5,-150,0,30)
-    }):Play()
-    
-    v2:Create(textLabel,TweenInfo.new(0.3),{TextTransparency=0}):Play()
-    
-    task.delay(2.5,function()
-        v2:Create(v77,TweenInfo.new(0.3,Enum.EasingStyle.Quad,Enum.EasingDirection.In),{
-            Position=UDim2.new(0.5,-150,0,-80),
-            Size=UDim2.new(0,0,0,0)
-        }):Play()
-        v2:Create(textLabel,TweenInfo.new(0.2),{TextTransparency=1}):Play()
-        task.wait(0.3)
-        v77:Destroy()
-    end)
+
+local function getHRP()
+    local char = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    return char:WaitForChild("HumanoidRootPart")
 end
- 
- 
-local function v63(v78,v79)
-    local btnFrame=Instance.new("Frame")
-    btnFrame.Size=UDim2.new(0.9,0,0,50)
-    btnFrame.Position=UDim2.new(0.05,0,0,v79)
-    btnFrame.BackgroundTransparency=1
-    btnFrame.Parent=v17
-    
-    local v81=Instance.new("TextButton")
-    v81.Size=UDim2.new(1,0,1,0)
-    v81.Position=UDim2.new(0,0,0,0)
-    v81.BackgroundColor3=Color3.fromRGB(32,32,42)
-    v81.BorderSizePixel=0
-    v81.AutoButtonColor=false
-    v81.Text=""
-    v81.Parent=btnFrame
-    
-    Instance.new("UICorner",v81).CornerRadius=UDim.new(0,12)
-    
-   
-    local btnGradient=Instance.new("UIGradient")
-    btnGradient.Color=ColorSequence.new{
-        ColorSequenceKeypoint.new(0,Color3.fromRGB(38,38,48)),
-        ColorSequenceKeypoint.new(1,Color3.fromRGB(32,32,42))
+
+-- Position 8
+local Position8 = CFrame.new(
+    4308.0742, 419.35007, 38.93758,
+    -1.3969839e-06, 2.4332402e-11, 1,
+    -5.4425064e-10, 1, -2.4333162e-11,
+    -1, -5.442507e-10, -1.3969839e-06
+)
+
+-- Position 9
+local Position9 = CFrame.new(
+    4885.9736, 513.77625, 1614.6974,
+    -0.60959768, 7.7603424e-08, -0.79271096,
+    9.8448425e-08, 1, 2.2189036e-08,
+    0.79271096, -6.4514758e-08, -0.60959768
+)
+
+-- State
+local autoTP = false
+local delayTime = 1
+local loopThread
+
+-- Window
+local Window = Rayfield:CreateWindow({
+    Name = "Mehmos Auto Teleport",
+    LoadingTitle = "AUTO FARM (PACTHED)",
+    LoadingSubtitle = "Rayfield Edition",
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = "MehmosAutoTP",
+        FileName = "Config"
     }
-    btnGradient.Rotation=90
-    btnGradient.Parent=v81
-  
-    local btnText=Instance.new("TextLabel")
-    btnText.Size=UDim2.new(1,-50,1,0)
-    btnText.Position=UDim2.new(0,15,0,0)
-    btnText.BackgroundTransparency=1
-    btnText.Text=v78
-    btnText.Font=Enum.Font.GothamBold
-    btnText.TextSize=15
-    btnText.TextColor3=Color3.fromRGB(200,200,210)
-    btnText.TextXAlignment=Enum.TextXAlignment.Left
-    btnText.Parent=v81
-    
-    
-    local v82=Instance.new("Frame")
-    v82.Size=UDim2.new(0,12,0,12)
-    v82.Position=UDim2.new(1,-25,0.5,-6)
-    v82.BackgroundColor3=Color3.fromRGB(240,71,71)
-    v82.BorderSizePixel=0
-    v82.Parent=v81
-    
-    Instance.new("UICorner",v82).CornerRadius=UDim.new(1,0)
-    
- 
-    v81.MouseEnter:Connect(function()
-        v2:Create(v81,TweenInfo.new(0.2),{
-            BackgroundColor3=Color3.fromRGB(42,42,52)
-        }):Play()
-        v2:Create(btnText,TweenInfo.new(0.2),{
-            TextColor3=Color3.new(1,1,1)
-        }):Play()
-    end)
-    
-    v81.MouseLeave:Connect(function()
-        v2:Create(v81,TweenInfo.new(0.2),{
-            BackgroundColor3=Color3.fromRGB(32,32,42)
-        }):Play()
-        v2:Create(btnText,TweenInfo.new(0.2),{
-            TextColor3=Color3.fromRGB(200,200,210)
-        }):Play()
-    end)
-    
-    return v81,v82,btnText
-end
- 
-local v64,v65,btnText=v63("Auto Win",75)
- 
- 
-local v49=Instance.new("Frame")
-v49.Size=UDim2.new(0.9,0,0,45)
-v49.Position=UDim2.new(0.05,0,0,140)
-v49.BackgroundColor3=Color3.fromRGB(28,28,36)
-v49.BorderSizePixel=0
-v49.Parent=v17
- 
-Instance.new("UICorner",v49).CornerRadius=UDim.new(0,12)
- 
-local hotkeyIcon=Instance.new("TextLabel")
-hotkeyIcon.Size=UDim2.new(0,30,0,30)
-hotkeyIcon.Position=UDim2.new(0,10,0.5,-15)
-hotkeyIcon.BackgroundColor3=Color3.fromRGB(88,101,242)
-hotkeyIcon.Text="E"
-hotkeyIcon.Font=Enum.Font.GothamBold
-hotkeyIcon.TextSize=16
-hotkeyIcon.TextColor3=Color3.new(1,1,1)
-hotkeyIcon.Parent=v49
- 
-Instance.new("UICorner",hotkeyIcon).CornerRadius=UDim.new(0,8)
- 
-local hotkeyText=Instance.new("TextLabel")
-hotkeyText.Size=UDim2.new(1,-50,1,0)
-hotkeyText.Position=UDim2.new(0,45,0,0)
-hotkeyText.BackgroundTransparency=1
-hotkeyText.Text="Press E to toggle Auto Win"
-hotkeyText.Font=Enum.Font.Gotham
-hotkeyText.TextSize=13
-hotkeyText.TextColor3=Color3.fromRGB(150,150,160)
-hotkeyText.TextXAlignment=Enum.TextXAlignment.Left
-hotkeyText.Parent=v49
- 
- 
-local function v68(status,btnObj,indicator,textObj)
-    local newColor=status and Color3.fromRGB(67,181,129) or Color3.fromRGB(240,71,71)
-    local newText=status and "Auto Win" or "Auto Win"
-    local statusText=status and "ACTIVE" or "INACTIVE"
-    
-    v2:Create(indicator,TweenInfo.new(0.3,Enum.EasingStyle.Quad),{
-        BackgroundColor3=newColor
-    }):Play()
-    
-    v2:Create(textObj,TweenInfo.new(0.2),{TextTransparency=1}):Play()
-    task.wait(0.2)
-    textObj.Text=newText
-    v2:Create(textObj,TweenInfo.new(0.2),{TextTransparency=0}):Play()
-    
-    if status then
-        local pulseSize=UDim2.new(0,16,0,16)
-        local normalSize=UDim2.new(0,12,0,12)
-        
-        local function pulse()
-            if v8 then
-                v2:Create(indicator,TweenInfo.new(0.5),{Size=pulseSize}):Play()
-                task.wait(0.5)
-                v2:Create(indicator,TweenInfo.new(0.5),{Size=normalSize}):Play()
-                task.wait(0.5)
-                pulse()
+})
+
+local Tab = Window:CreateTab("🚀 Auto Farm", 4483362458)
+
+local StatusLabel = Tab:CreateLabel("Status: Idle")
+
+-- Delay Slider
+Tab:CreateSlider({
+    Name = "Delay (Seconds)",
+    Range = {0.5, 10},
+    Increment = 0.5,
+    CurrentValue = 1,
+    Callback = function(v)
+        delayTime = v
+    end
+})
+
+-- Auto Toggle
+Tab:CreateToggle({
+    Name = "AUTO FARM (PACTHED)",
+    CurrentValue = false,
+    Callback = function(v)
+        autoTP = v
+
+        if autoTP then
+            loopThread = task.spawn(function()
+                local hrp = getHRP()
+                while autoTP do
+                    hrp.CFrame = Position8
+                    StatusLabel:Set("Status: Teleporting to 8")
+                    task.wait(delayTime)
+
+                    if not autoTP then break end
+
+                    hrp.CFrame = Position9
+                    StatusLabel:Set("Status: Teleporting to 9")
+                    task.wait(delayTime)
+                end
+            end)
+        else
+            if loopThread then
+                task.cancel(loopThread)
+                loopThread = nil
             end
+            StatusLabel:Set("Status: Idle")
         end
-        task.spawn(pulse)
     end
-end
- 
- 
-local function v69()
-    v10=v1.Heartbeat:Connect(function()
-        local v102=v4.Character
-        local v103=v102 and v102:FindFirstChildOfClass("Humanoid")
-        local v104=v102 and v102:FindFirstChild("HumanoidRootPart")
-        local v105=workspace.CurrentCamera
-        if(v103 and v104 and v105)then
-            v104.CFrame=v5
-            local v124=v105.CFrame.LookVector
-            v103:Move(Vector3.new(v124.X,0,v124.Z),true)
-        end
-    end)
-end
- 
-local function v70()
-    if v10 then
-        v10:Disconnect()
-        v10=nil
+})
+
+-- Stop Button
+Tab:CreateButton({
+    Name = "Stop",
+    Callback = function()
+        autoTP = false
+        if loopThread then task.cancel(loopThread) end
+        StatusLabel:Set("Status: Idle")
     end
-end
- 
-local function v73()
-    v8=not v8
-    if v8 then
-        v68(true,v64,v65,btnText)
-        v60("Auto Win Activated",true)
-        v69()
-    else
-        v68(false,v64,v65,btnText)
-        v60("Auto Win Deactivated",false)
-        v70()
+})
+
+-- Destroy GUI
+Tab:CreateButton({
+    Name = "Destroy GUI",
+    Callback = function()
+        autoTP = false
+        if loopThread then task.cancel(loopThread) end
+        Rayfield:Destroy()
     end
-end
- 
- 
-v64.MouseButton1Click:Connect(v73)
- 
-v3.InputBegan:Connect(function(v96,v97)
-    if v97 then return end
-    if(v96.KeyCode==Enum.KeyCode.E)then
-        v73()
-    end
-end)
- 
- 
-v38.MouseEnter:Connect(function()
-    v2:Create(v38,TweenInfo.new(0.2),{
-        BackgroundColor3=Color3.fromRGB(45,45,55),
-        TextColor3=Color3.new(1,1,1)
-    }):Play()
-end)
- 
-v38.MouseLeave:Connect(function()
-    v2:Create(v38,TweenInfo.new(0.2),{
-        BackgroundColor3=Color3.fromRGB(35,35,45),
-        TextColor3=Color3.fromRGB(200,200,210)
-    }):Play()
-end)
- 
-v38.MouseButton1Click:Connect(function()
-    v12=not v12
-    if v12 then
-        v2:Create(v17,TweenInfo.new(0.4,Enum.EasingStyle.Quint),{
-            Size=UDim2.new(0,350,0,60)
-        }):Play()
-        v64.Visible=false
-        v49.Visible=false
-        subtitle.Visible=false
-        v38.Text="+"
-    else
-        v2:Create(v17,TweenInfo.new(0.4,Enum.EasingStyle.Quint),{
-            Size=UDim2.new(0,350,0,220)
-        }):Play()
-        v64.Visible=true
-        v49.Visible=true
-        subtitle.Visible=true
-        v38.Text="−"
-    end
-end)
- 
- 
-task.wait(0.5)
-v60("Mehmos Script Loaded Successfully",true)
+})
+
+-- Notify
+Rayfield:Notify({
+    Title = "Mehmos Auto Teleport",
+    Content = "AUTO FARM (PACTHED) system loaded",
+    Duration = 4
+})
