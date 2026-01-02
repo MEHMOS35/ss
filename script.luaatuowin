@@ -1,38 +1,30 @@
-
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
-
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
-
 repeat task.wait() until LocalPlayer.Character
 repeat task.wait() until workspace.CurrentCamera
-
 local function getHRP()
     local char = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
     return char:WaitForChild("HumanoidRootPart")
 end
-
 -- Position 8
 local Position8 = CFrame.new(
-    4308.0742, 419.35007, 38.93758,
-    -1.3969839e-06, 2.4332402e-11, 1,
-    -5.4425064e-10, 1, -2.4333162e-11,
-    -1, -5.442507e-10, -1.3969839e-06
+    4923.0312, 411.58609, 1654.1418,
+    -0.99888957, -4.8688275e-08, 0.047112498,
+    -4.5936737e-08, 1, 5.9486254e-08,
+    -0.047112498, 5.7256006e-08, -0.99888957
 )
-
 -- Position 9
 local Position9 = CFrame.new(
-    4885.9736, 513.77625, 1614.6974,
-    -0.60959768, 7.7603424e-08, -0.79271096,
-    9.8448425e-08, 1, 2.2189036e-08,
-    0.79271096, -6.4514758e-08, -0.60959768
+    6370.981, 401.74884, 3591.8347,
+    0.0062809396, -1.6103384e-09, 0.99998027,
+    1.4105412e-09, 1, 1.6015105e-09,
+    -0.99998027, 1.4004544e-09, 0.0062809396
 )
-
 -- State
 local autoTP = false
 local delayTime = 1
 local loopThread
-
 -- Window
 local Window = Rayfield:CreateWindow({
     Name = "Mehmos Auto Teleport",
@@ -44,11 +36,8 @@ local Window = Rayfield:CreateWindow({
         FileName = "Config"
     }
 })
-
 local Tab = Window:CreateTab("🚀 Auto Farm", 4483362458)
-
 local StatusLabel = Tab:CreateLabel("Status: Idle")
-
 -- Delay Slider
 Tab:CreateSlider({
     Name = "Delay (Seconds)",
@@ -59,14 +48,12 @@ Tab:CreateSlider({
         delayTime = v
     end
 })
-
 -- Auto Toggle
 Tab:CreateToggle({
     Name = "AUTO FARM (PACTHED)",
     CurrentValue = false,
     Callback = function(v)
         autoTP = v
-
         if autoTP then
             loopThread = task.spawn(function()
                 local hrp = getHRP()
@@ -74,9 +61,7 @@ Tab:CreateToggle({
                     hrp.CFrame = Position8
                     StatusLabel:Set("Status: Teleporting to 8")
                     task.wait(delayTime)
-
                     if not autoTP then break end
-
                     hrp.CFrame = Position9
                     StatusLabel:Set("Status: Teleporting to 9")
                     task.wait(delayTime)
@@ -91,7 +76,6 @@ Tab:CreateToggle({
         end
     end
 })
-
 -- Stop Button
 Tab:CreateButton({
     Name = "Stop",
@@ -101,7 +85,6 @@ Tab:CreateButton({
         StatusLabel:Set("Status: Idle")
     end
 })
-
 -- Destroy GUI
 Tab:CreateButton({
     Name = "Destroy GUI",
@@ -111,7 +94,6 @@ Tab:CreateButton({
         Rayfield:Destroy()
     end
 })
-
 -- Notify
 Rayfield:Notify({
     Title = "Mehmos Auto Teleport",
